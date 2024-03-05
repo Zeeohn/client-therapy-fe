@@ -11,6 +11,7 @@ import { Page } from "./views/admin/editTheme/page";
 import ViewTheme from "./views/admin/viewTheme/ViewTheme";
 import ViewPage from "./views/admin/editTheme/viewPage/ViewPage";
 import CreatePage from "./views/admin/createPage";
+import ThemePage from "./views/admin/ThemePage"
 // import BlocksPage from './views/admin/editTheme/blocks/BlocksPage'
 
 const router = createBrowserRouter([
@@ -42,6 +43,10 @@ const router = createBrowserRouter([
         path: "thema/bladzijde/create",
         element: <CreatePage />,
       },
+      {
+        path: "thema/:themeId/page/:pageId",
+        element: <ThemePage />,
+      }
       // {
       //   path: "thema/bladzijde/create",
       //   element: <EditTheme />,

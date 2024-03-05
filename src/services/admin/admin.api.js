@@ -9,6 +9,8 @@ import {
   savePage,
   saveTheme,
   searchText,
+  fetchThemePageBlockByID,
+  deleteThemePage
 } from "./admin.fetch";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +20,21 @@ export const useFetchAllThemes = () =>
     queryFn: fetchAllThemes,
   });
 
+export const useFetchThemePageBlocks = (id) => 
+useQuery({
+  queryKey: ["themePageBlocks"],
+  queryFn: () => fetchThemePageBlockByID(id),
+});
+
+export const useDeleteThemePage = ({themeId, pageId}) => {
+  const navigate = useNavigate();
+  return useMutation({
+    mutationKey: ["themes"],
+    mutationFn: () => deleteThemePage(pageId),
+    onSuccess: () => navigate(`/admin/thema/${themeId}`),
+  });
+};
+ 
 export const useCheckThemeExistence = (theme) => {
   return useMutation({
     mutationKey: ["themes"],
@@ -39,6 +56,7 @@ export const useDeleteTheme = (id) => {
     onSuccess: () => navigate("/admin/thema"),
   });
 };
+
 export const useFetchThemePages = (id) =>
   useQuery({
     queryKey: ["pages"],
