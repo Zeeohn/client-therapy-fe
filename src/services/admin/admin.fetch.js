@@ -15,6 +15,64 @@ export const fetchAllThemes = async () => {
   }
 };
 
+export const fetchThemePageBlockByID = async (id) => {
+  try {
+    const response = await fetch(API_URL + "fetch_page_blocks", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    });
+    if (!response.ok) throw new Error("Something went wrong");
+    const data = await response.json();
+
+    return data
+  } catch (error) {
+    handleError(error);
+  }
+};
+
+export const deleteThemePage = async (id) => {
+  try {
+    const response = await fetch(`${API_URL}delete_page`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id }),
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to delete theme page. Status: ${response.status}`);
+    }
+    const result = await response.json();
+    return result.success;
+  } catch (error) {
+    console.error("Error deleting theme page:", error);
+    throw new Error("Failed to delete theme page");
+  }
+};
+
+export const deleteThemePageBlocks = async ({pageId, blockIds}) => {
+  try {
+    const response = await fetch(`${API_URL}delete_blocks`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: pageId, blocks: blockIds }),
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to delete theme page blocks. Status: ${response.status}`);
+    }
+    const result = await response.json();
+    return result.success;
+  } catch (error) {
+    console.error("Error deleting theme page blocks:", error);
+    throw new Error("Failed to delete theme page blocks");
+  }
+};
+
 export const checkThemeExistence = async (theme) => {
   try {
     const response = await fetch(`${API_URL}check_theme_existence`, {
@@ -33,6 +91,7 @@ export const checkThemeExistence = async (theme) => {
     handleError(error);
   }
 };
+
 export const saveTheme = async (theme) => {
   try {
     const response = await fetch(`${API_URL}save_theme`, {
@@ -51,6 +110,8 @@ export const saveTheme = async (theme) => {
     handleError(error);
   }
 };
+
+
 export const deleteTheme = async (id) => {
   try {
     const response = await fetch(`${API_URL}delete_theme`, {
@@ -70,6 +131,8 @@ export const deleteTheme = async (id) => {
     throw new Error("Failed to delete theme");
   }
 };
+
+
 export const fetchThemePages = async (id) => {
   try {
     const response = await fetch(API_URL + "fetch_theme_pages", {
@@ -89,6 +152,8 @@ export const fetchThemePages = async (id) => {
     handleError(error);
   }
 };
+
+
 export const savePage = async (pageData) => {
   try {
     const response = await fetch(API_URL + "save_page", {
@@ -104,6 +169,8 @@ export const savePage = async (pageData) => {
     handleError(error);
   }
 };
+
+
 export const searchText = async (text) => {
   try {
     const response = await fetch(API_URL + "dynamic_search", {
@@ -125,6 +192,8 @@ export const searchText = async (text) => {
     handleError(error);
   }
 };
+
+
 export const performCategorySearch = async (query) => {
   try {
     const response = await fetch(API_URL + "perform_category_search", {

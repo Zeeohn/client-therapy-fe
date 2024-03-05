@@ -11,6 +11,8 @@ import { Page } from "./views/admin/editTheme/page";
 import ViewTheme from "./views/admin/viewTheme/ViewTheme";
 import ViewPage from "./views/admin/editTheme/viewPage/ViewPage";
 import CreatePage from "./views/admin/createPage";
+import ThemePage from "./views/admin/ThemePage"
+import { RecoilRoot } from "recoil";
 // import BlocksPage from './views/admin/editTheme/blocks/BlocksPage'
 
 const router = createBrowserRouter([
@@ -42,6 +44,10 @@ const router = createBrowserRouter([
         path: "thema/bladzijde/create",
         element: <CreatePage />,
       },
+      {
+        path: "thema/:themeId/page/:pageId",
+        element: <ThemePage />,
+      }
       // {
       //   path: "thema/bladzijde/create",
       //   element: <EditTheme />,
@@ -53,9 +59,11 @@ const queryClient = new QueryClient();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <QueryClientProvider client={queryClient}>
-      <RouterProvider router={router} />
-      {/* <App /> */}
-    </QueryClientProvider>
+    <RecoilRoot>
+      <QueryClientProvider client={queryClient}>
+        <RouterProvider router={router} />
+        {/* <App /> */}
+      </QueryClientProvider>
+    </RecoilRoot>
   </React.StrictMode>
 );
