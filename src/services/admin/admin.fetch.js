@@ -53,6 +53,26 @@ export const deleteThemePage = async (id) => {
   }
 };
 
+export const deleteThemePageBlocks = async ({pageId, blockIds}) => {
+  try {
+    const response = await fetch(`${API_URL}delete_blocks`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ id: pageId, blocks: blockIds }),
+    });
+    if (!response.ok) {
+      throw new Error(`Failed to delete theme page blocks. Status: ${response.status}`);
+    }
+    const result = await response.json();
+    return result.success;
+  } catch (error) {
+    console.error("Error deleting theme page blocks:", error);
+    throw new Error("Failed to delete theme page blocks");
+  }
+};
+
 export const checkThemeExistence = async (theme) => {
   try {
     const response = await fetch(`${API_URL}check_theme_existence`, {
