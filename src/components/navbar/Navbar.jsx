@@ -2,10 +2,17 @@ import { Link } from "react-router-dom";
 import userImg from "./../../assets/user-svgrepo-com.svg";
 import themeImg from "./../../assets/grid-plus-svgrepo-com.svg";
 import { motion } from "framer-motion";
+import { Image } from "antd"
+import logo from '../../assets/logopedia.jpg'
 
 const Navbar = () => {
   return (
     <div className="flex min-h-screen w-[20%] flex-col border-t bg-[#1F2937] px-4 pt-6 text-white">
+       <Image
+        width={250}
+        src={logo}
+        className="mb-2"
+      />
       <div className="pb-6 text-xl font-semibold">logopediemateriaal</div>
       <div className="flex w-fit flex-row content-baseline justify-between gap-4 text-white">
         <div className="h-12 w-12 rounded-full">
