@@ -1,14 +1,14 @@
-import { MdErrorOutline } from "react-icons/md";
+import { MdErrorOutline } from 'react-icons/md'
 
-const ErrorMessage = () => {
+const ErrorMessage = ({ message }) => {
   return (
-    <div className="flex flex-col gap-y-2 justify-center w-full items-center">
+    <div className="flex w-full flex-col items-center justify-center gap-y-2">
       <MdErrorOutline color="#EF4444" fontSize="4rem" />
-      <p className="text-red-500 text-lg font-medium">
-        Error. Something went wrong...
+      <p className="text-lg font-medium text-red-500">
+        {message || `Error. Something went wrong...`}
       </p>
     </div>
-  );
-};
+  )
+}
 
-export default ErrorMessage;
+export default ErrorMessage
